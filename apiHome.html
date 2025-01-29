@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch API Example</title>
+</head>
+<body>
+    <h2>Fetch Data from API</h2>
+    <button id="fetchButton">Fetch API Data</button>
+    <div id="result"></div>
+
+    <script>
+        // Define an asynchronous function to fetch data from the API
+        async function fetchData() {
+            const url = 'https://api.apis.guru/v2/list.json'; // API URL
+
+            try {
+                // Fetch the data from the API
+                let response = await fetch(url);
+
+                // Check if the response is successful (status code 200)
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+
+                // Parse the response as JSON
+                let data = await response.json();
+
+                // Log the fetched data to the console
+                console.log(data);
+
+                // Display the fetched data in the result div
+                const resultDiv = document.getElementById('result');
+                resultDiv.innerHTML = '<h3>Fetched API Data:</h3>';
+                
+                // Loop through the data and display key-value pairs
+                Object.keys(data).forEach(key => {
+                    const item = document.createElement('div');
+                    item.innerHTML = `<strong>${key}:</strong> ${JSON.stringify(data[key])}`;
+                    resultDiv.appendChild(item);
+                });
+
+            } catch (error) {
+                // Handle any errors that occur during the fetch process
+                console.error('Error fetching data:', error);
+                const resultDiv = document.getElementById('result');
+                resultDiv.innerHTML = `<p style="color: red;">Error fetching data: ${error.message}</p>`;
+            }
+        }
+
+        // Attach event listener to the "Fetch Data" button
+        document.getElementById('fetchButton').addEventListener('click', fetchData);
+    </script>
+</body>
+</html>
