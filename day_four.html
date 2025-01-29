@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Page</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      background: #f3f3f3;
+      margin: 0;
+    }
+
+    .container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      width: 80%;
+      height: 80vh;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .image-section {
+      background: url('image.png') no-repeat center center/cover;
+      border-top-left-radius: 10px;
+      border-bottom-left-radius: 10px;
+    }
+
+    .form-section {
+      background: #fff;
+      padding: 2rem;
+      border-top-right-radius: 10px;
+      border-bottom-right-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .form-section h2 {
+      margin-bottom: 1rem;
+      font-size: 24px;
+    }
+
+    .form-section form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .form-section label {
+      margin-bottom: 0.5rem;
+      font-size: 14px;
+    }
+
+    .form-section input {
+      margin-bottom: 1rem;
+      padding: 0.75rem;
+      font-size: 14px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .form-section .actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .form-section .actions a {
+      text-decoration: none;
+      color: #007bff;
+      font-size: 12px;
+    }
+
+    .form-section button {
+      padding: 0.75rem;
+      font-size: 16px;
+      color: #fff;
+      background: #28a745;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-bottom: 1rem;
+    }
+
+    .form-section button.google-signin {
+      background: #4a4a4a;
+    }
+
+    .form-section .error-message {
+      color: red;
+      font-size: 14px;
+      margin-top: -0.5rem;
+      margin-bottom: 1rem;
+      display: none; /* Initially hidden */
+    }
+
+    .form-section .signup {
+      text-align: center;
+      font-size: 14px;
+    }
+
+    .form-section .signup a {
+      color: #007bff;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="image-section"></div>
+    <div class="form-section">
+      <h2>Welcome back</h2>
+      <h3>Login to your account</h3>
+      <form id="loginForm">
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="Enter your email" />
+        <label for="password">Password</label>
+        <input type="password" id="password" placeholder="Enter your password" />
+        <div class="actions">
+          <label><input type="checkbox" /> Remember me</label>
+          <a href="#">Forgot password?</a>
+        </div>
+        <button type="submit">Login now</button>
+        <p class="error-message" id="errorMessage"></p>
+        <button type="button" class="google-signin">Or sign-in with Google</button>
+      </form>
+      <p class="signup">Don't have an account? <a href="#">Join free today</a></p>
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById("loginForm");
+    const emailField = document.getElementById("email");
+    const passwordField = document.getElementById("password");
+    const errorMessage = document.getElementById("errorMessage");
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const email = emailField.value.trim();
+      const password = passwordField.value.trim();
+
+      if (email === "sankey901@solutions.com") {
+        if (password === "mindset") {
+          // Redirect to a new page
+          window.location.href = "welcome.html";
+        } else {
+          errorMessage.textContent = "Invalid password";
+          errorMessage.style.display = "block";
+        }
+      } else {
+        errorMessage.textContent = "Invalid username/email";
+        errorMessage.style.display = "block";
+      }
+    });
+  </script>
+</body>
+</html>
